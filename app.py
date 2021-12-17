@@ -26,6 +26,36 @@ st.sidebar.selectbox('Hello',['Datafram','Statistiques'])
 st.write(df)
 st.write(df2)
 
+def count_number(x,y):
+    count = 0 
+    for i in range(len(x['Numero'])):
+        for j in x['Numero'][i][0:5]:
+            if j == y :
+                count += 1 
+    return count
 
+liste = []
+for i in range(1,50):
+    liste.append({i : count_number(df,i)})
 
+# import plotly.express as px
+# df = px.data.tips()
+# fig = px.box(df, y="total_bill")
+# st.write(fig.show())
 
+st.subheader('Nombre de tirage pour chacun des 5 numéros')
+st.bar_chart(liste)
+
+def count_number_chance(x,y):
+    count = 0 
+    for i in range(len(x['Numero'])):
+        for j in x['Numero'][i][5:]:
+            if j == y :
+                count += 1 
+    return count
+
+liste2 = []
+for i in range(1,11):
+    liste2.append({i : count_number(df,i)})
+st.subheader('Nombre de tirage pour chaque numéro chance')
+st.bar_chart(liste2)
