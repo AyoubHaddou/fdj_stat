@@ -6,20 +6,21 @@ from pymongo import MongoClient
 from fonction import * 
 
 
-# Import de ma database sur mongodb cloud 
+# => Import de ma database sur mongodb cloud 
 client = MongoClient('mongodb+srv://ayoub:dnU*r*kNQXMj2pv@cluster0.pblvj.mongodb.net/test')
 # client = MongoClient(**st.secrets["mongo"])
 db = client.Database_scrapy.Loto2
+
+# Declaration des variables et des listes et des Df
+a = st.sidebar.selectbox('Hello',['En Datafram','Les 5 numéros gagnant','Le numéro chance','Recherche'])
+col1,col2,col3 = st.columns(3)
+acol1,acol2 = st.columns(2)
 
 cursor = list(db.find({},{'_id':0}))
 df = pd.DataFrame(cursor)
 n = [n for n in df['Numero']]
 df2 = pd.DataFrame(n)
 df2.index += 1 
-
-# Declaration des variables et des listes
-a = st.sidebar.selectbox('Hello',['En Datafram','Les 5 numéros gagnant','Le numéro chance','Recherche'])
-col1,col2,col3 = st.columns(3)
 
 table_chance_100 = []
 for i in range(1,11):
@@ -75,15 +76,22 @@ result1.index += 1
 
 if a == 'En Datafram':
 
-    st.write('Les listes gagnante depuis janvier 2009')
-    st.dataframe(df2)
-    st.write('Nombre et pourcentage de sortie gagnante des 5premiers numéros depuis 2009')
-    st.dataframe(result)
-    st.write('Nombre et pourcentage de sortie gagnante pour le numero chance depuis 2009')
-    st.dataframe(result1)
 
-    st.write('Les listes avec dates')
-    st.write(df)
+    with acol1:
+        st.write('Nombre et pourcentage de sortie gagnante des 5premiers numéros depuis 2009')
+        st.dataframe(result)
+        st.write('Les listes gagnante depuis janvier 2009')
+        st.dataframe(df2)
+
+    with acol2:
+        st.write('Nombre et pourcentage de sortie gagnante pour le numero chance depuis 2009')
+        st.dataframe(result1)
+        st.write('Les listes avec dates')
+        df.index += 1 
+        st.write(df)
+
+
+
 
 if a == 'Recherche':
     with col1:
