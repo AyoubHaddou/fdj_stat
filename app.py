@@ -1,9 +1,12 @@
 from json import encoder
+from plotly.tools import DIAG_CHOICES
 import streamlit as st 
 import pandas as pd
 from streamlit import cursor 
 from pymongo import MongoClient
 from fonction import * 
+import plotly.graph_objects as go
+import plotly.express as px
 
 
 # => Import de ma database sur mongodb cloud 
@@ -12,7 +15,7 @@ client = MongoClient('mongodb+srv://ayoub:dnU*r*kNQXMj2pv@cluster0.pblvj.mongodb
 db = client.Database_scrapy.Loto2
 
 # Declaration des variables et des listes et des Df
-a = st.sidebar.selectbox('Hello',['En Datafram','Les 5 numéros gagnant','Le numéro chance','Recherche'])
+a = st.sidebar.selectbox('Hello',['En Datafram','Les 5 numéros gagnant','Le numéro chance','Recherche','With plotly'])
 col1,col2,col3 = st.columns(3)
 acol1,acol2 = st.columns(2)
 
@@ -131,5 +134,20 @@ if a == 'Le numéro chance':
     st.line_chart(result1)
     st.area_chart(result1)
 
+if a == 'With plotly':
+
+
+    fig = px.bar(result, x=result.index, y='Nombre de sortie')
+    st.write(fig)
+    fig = go.Figure(
+    data=[go.Bar(y=result['Proba en %'],x=[i for i in range(1,11)])],
+    layout_title_text="Nombre de sortie")
+    st.write(fig)
+
+
+    fig = go.Figure(
+    data=[go.Bar(y=result['Nombre de sortie'],x=[i for i in range(1,50)])],
+    layout_title_text="Nombre de sortie")
+    st.write(fig)
 
 
