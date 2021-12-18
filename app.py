@@ -3,59 +3,77 @@ import streamlit as st
 import pandas as pd
 from streamlit import cursor 
 from pymongo import MongoClient
+from fonction import * 
 
 
-
-
-client = MongoClient('mongodb+srv://ayoub:dnU*r*kNQXMj2pv@cluster0.pblvj.mongodb.net/test')
+# Import de ma database sur mongodb cloud 
+# client = MongoClient('mongodb+srv://ayoub:dnU*r*kNQXMj2pv@cluster0.pblvj.mongodb.net/test')
+client = MongoClient(**st.secrets["mongo"])
 db = client.Database_scrapy.Loto2
-# db_test = pd.read_json('Loto2.json',orient='records', encoding='utf-8')
-# cursor_test = list(db.find({},{'_id':0}))
+
 cursor = list(db.find({},{'_id':0}))
-
-
 df = pd.DataFrame(cursor)
 a = [i for i in df['Numero']]
 df2 = pd.DataFrame(a)
 
+# Declaration des variables et des listes
+a = st.sidebar.selectbox('Hello',['En Datafram','Les 5 numéros gagnant','Le numéro chance'])
+col1,col2,col3 = st.columns(3)
 
-# df1 = pd.DataFrame({'Annee' : 2019, 'Jour' : 10 , 'Numero' : ['1,2,3']})
-
-# st.write(df2)
-st.sidebar.selectbox('Hello',['Datafram','Statistiques'])
-st.write(df)
-st.write(df2)
-
-def count_number(x,y):
-    count = 0 
-    for i in range(len(x['Numero'])):
-        for j in x['Numero'][i][0:5]:
-            if j == y :
-                count += 1 
-    return count
-
-liste = []
-for i in range(1,50):
-    liste.append({i : count_number(df,i)})
-
-# import plotly.express as px
-# df = px.data.tips()
-# fig = px.box(df, y="total_bill")
-# st.write(fig.show())
-
-st.subheader('Nombre de tirage pour chacun des 5 numéros')
-st.bar_chart(liste)
-
-def count_number_chance(x,y):
-    count = 0 
-    for i in range(len(x['Numero'])):
-        for j in x['Numero'][i][5:]:
-            if j == y :
-                count += 1 
-    return count
-
-liste2 = []
+table_chance_100 = []
 for i in range(1,11):
-    liste2.append({i : count_number(df,i)})
-st.subheader('Nombre de tirage pour chaque numéro chance')
-st.bar_chart(liste2)
+    table_chance_100.append({'La proba en %' : f"Numero {i} : {count_number_chance(df,i) / 2094 * 100}"})
+
+table_100 = []
+for i in range(1,50):
+    table_100.append({'La proba en %' : f"Numero {i} : {count_number(df,i) / 2094 * 100}"})
+
+num = []
+for i in range(1,50):
+    num.append({'Numero :'+str(i) : count_number(df,i)})
+
+num_p = []
+for i in range(1,50):
+    num_p.append({i : count_number(df,i) / 2094 *100})
+
+num_chance = []
+for i in range(1,11):
+    num_chance.append({i : count_number_chance(df,i)})
+
+num_chance_p = []
+for i in range(1,11):
+    num_chance_p.append({i : count_number_chance(df,i) / 2094 *100})
+
+
+
+if a == 'En Datafram':
+    
+    with col1:
+        st.write('Numéro gagnant en %')
+        st.dataframe(table_100)
+        
+    with col2:
+        st.write('Numéro chance en %')
+        st.dataframe(table_chance_100)
+
+    st.write('Les listes gagnante depuis 2008')
+    st.dataframe(df2)
+
+    st.write('Les listes avec dates')
+    st.write(df)
+if a == 'Les 5 numéros gagnant':
+    st.subheader('Nombre de tirage pour chacun des 5 numéros')
+    st.bar_chart(num)
+    st.subheader('Nombre de tirage pour chacun des 5 numéros en pourcentage')
+    st.bar_chart(num_p)
+
+
+
+if a == 'Le numéro chance':
+    st.subheader('Nombre de tirage pour chaque numéro chance')
+    st.bar_chart(num_chance)
+    st.subheader('Nombre de tirage pour chacun numéro chance en pourcentage')
+    st.bar_chart(num_chance_p)
+
+
+
