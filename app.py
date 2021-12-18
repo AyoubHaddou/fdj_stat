@@ -112,15 +112,19 @@ if a == 'Recherche':
         st.selectbox('Numéro :', result1.index)
         st.button('Appliquer ')
 
+    st.write('Nombre de fois dans chaque dizaine :')
+    st.write(count_tenth(df2))
+
 
 if a == 'Les 5 numéros gagnant':
     st.subheader('Nombre de tirage pour chacun des 5 numéros')
     st.bar_chart(num_df)
     st.subheader('Nombre de tirage pour chacun des 5 numéros en pourcentage')
     st.bar_chart(num_p_df)
-    st.bar_chart(result)
+    st.subheader('Superposition du pourcentage et du nombre de sortie par numéro sous différentes vues')
     st.line_chart(result)
     st.area_chart(result)
+    st.bar_chart(result)
 
 
 if a == 'Le numéro chance':
@@ -128,25 +132,24 @@ if a == 'Le numéro chance':
     st.bar_chart(df_num_chance)
     st.subheader('Nombre de tirage pour chacun numéro chance en pourcentage')
     st.bar_chart(df_num_chance_p)
-    st.bar_chart(df_table_chance_100)
-    st.bar_chart(df_table_chance_100_t)
+    st.subheader('Superposition du pourcentage et du nombre de sortie par numéro sous différentes vues')
     st.line_chart(result1)
     st.area_chart(result1)
+    st.bar_chart(df_table_chance_100_t)
 
 # if a == 'With plotly':
 
+#     fig = px.bar(result, x=result.index, y='Nombre de sortie')
+#     st.write(fig)
+#     fig = go.Figure(
+#     data=[go.Bar(y=result['Proba en %'],x=[i for i in range(1,11)])],
+#     layout_title_text="Nombre de sortie")
+#     st.write(fig)
 
-    # fig = px.bar(result, x=result.index, y='Nombre de sortie')
-    # st.write(fig)
-    # fig = go.Figure(
-    # data=[go.Bar(y=result['Proba en %'],x=[i for i in range(1,11)])],
-    # layout_title_text="Nombre de sortie")
-    # st.write(fig)
 
-
-    # fig = go.Figure(
-    # data=[go.Bar(y=result['Nombre de sortie'],x=[i for i in range(1,50)])],
-    # layout_title_text="Nombre de sortie")
-    # st.write(fig)
+#     fig = go.Figure(
+#     data=[go.Bar(y=result['Nombre de sortie'],x=[i for i in range(1,50)])],
+#     layout_title_text="Nombre de sortie")
+#     st.write(fig)
 
 
