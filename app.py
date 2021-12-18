@@ -60,21 +60,23 @@ df_num_chance_p.index += 1
 
 table_chance_100_t = []
 for i in range(1,11):
-    table_chance_100_t.append({'Nombre de sortie' :  count_number_chance(df,i), 'Proba en %' : (count_number_chance(df,i) / 2094 * 100)})
+    table_chance_100_t.append({'Nombre de sortie' :  count_number_chance(df,i), 'En %' : (count_number_chance(df,i) / 2094 * 100)})
 df_table_chance_100_t = pd.DataFrame(table_chance_100_t)
 df_table_chance_100_t.index += 1 
 
 table_c_100 = []
 for i in range(1,50):
-    table_c_100.append({'Nombre de sortie' :  count_number(df,i), 'Proba en %' : float(count_number(df,i) / 2094 * 100)})
+    table_c_100.append({'Nombre de sortie' :  count_number(df,i), 'En %' : float(count_number(df,i) / 2094 * 100)})
 result = pd.DataFrame(table_c_100)
 result.index +=1 
 
 table_c_100_chance = []
 for i in range(1,11):
-    table_c_100_chance.append({'Nombre de sortie' :  count_number_chance(df,i), 'Proba en %' : float(count_number_chance(df,i) / 2094 * 100)})
+    table_c_100_chance.append({'Nombre de sortie' :  count_number_chance(df,i), 'En %' : float(count_number_chance(df,i) / 2094 * 100)})
 result1 = pd.DataFrame(table_c_100_chance)
 result1.index += 1 
+
+
 
 if a == 'En Datafram':
 
