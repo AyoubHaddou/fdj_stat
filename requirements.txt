@@ -1,3 +1,5 @@
 streamlit
 pandas
 pymongo[srv]
+plotly.graph_objects
+plotly.express
