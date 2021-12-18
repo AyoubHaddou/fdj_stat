@@ -26,13 +26,13 @@ df2.index += 1
 
 table_chance_100 = []
 for i in range(1,11):
-    table_chance_100.append({'N° chance' :  i, 'Proba en %' : (count_number_chance(df,i) / 2094 * 100)})
+    table_chance_100.append({'N° chance' :  i, 'en %' : (count_number_chance(df,i) / 2094 * 100)})
 df_table_chance_100 = pd.DataFrame(table_chance_100)
 df_table_chance_100.index = [i for i in range (1,11)]
 
 table_100 = []
 for i in range(1,50):
-    table_100.append({'Numero' :  i, 'Proba en %' : (count_number(df,i) / 2094 * 100)})
+    table_100.append({'Numero' :  i, 'en %' : (count_number(df,i) / 2094 * 100)})
 df_table_100 = pd.DataFrame(table_100)
 df_table_100.index +=1 
 num = []
@@ -97,11 +97,11 @@ if a == 'En Datafram':
 
 if a == 'Recherche':
     with col1:
-        st.write('Numéro gagnant en %')
+        st.write('Les 5N - Parution en %')
         st.dataframe(table_100)
         
     with col2:
-        st.write('Numéro chance en %')
+        st.write('Le N chance - Parution en %')
         st.dataframe(table_chance_100)
 
     with col3:
