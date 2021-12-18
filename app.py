@@ -31,11 +31,14 @@ for i in range(1,50):
 num = []
 for i in range(1,50):
     num.append({'Numero :'+str(i) : count_number(df,i)})
+num_df = pd.DataFrame(num)
+num_df.index = [i for i in range (1,50)]
 
 num_p = []
 for i in range(1,50):
     num_p.append({i : count_number(df,i) / 2094 *100})
-
+num_p_df = pd.DataFrame(num_p)
+num_p_df.index = [i for i in range (1,50)]
 num_chance = []
 for i in range(1,11):
     num_chance.append({i : count_number_chance(df,i)})
@@ -51,7 +54,6 @@ for i in range(1,11):
 table_c_100 = []
 for i in range(1,50):
     table_c_100.append({'Nombre de sortie' :  count_number(df,i), 'Proba en %' : float(count_number(df,i) / 2094 * 100)})
-    
 result = pd.DataFrame(table_c_100)
 result.index = [i for i in range(1,50)]
 
@@ -94,10 +96,10 @@ if a == 'Recherche':
 
 if a == 'Les 5 numéros gagnant':
     st.subheader('Nombre de tirage pour chacun des 5 numéros')
-    st.bar_chart(num)
+    st.bar_chart(num_df)
     st.subheader('Nombre de tirage pour chacun des 5 numéros en pourcentage')
-    st.bar_chart(num_p)
-    st.bar_chart(table_c_100)
+    st.bar_chart(num_p_df)
+    st.bar_chart(result)
     st.line_chart(result)
     st.area_chart(result)
 
