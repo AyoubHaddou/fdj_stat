@@ -1,11 +1,14 @@
+from json import encoder
 import streamlit as st 
 import pandas as pd
+from streamlit import cursor 
 from pymongo import MongoClient
 from fonction import * 
 
 
 # Import de ma database sur mongodb cloud 
-client = MongoClient(**st.secrets["mongo"])
+client = MongoClient('mongodb+srv://ayoub:dnU*r*kNQXMj2pv@cluster0.pblvj.mongodb.net/test')
+# client = MongoClient(**st.secrets["mongo"])
 db = client.Database_scrapy.Loto2
 
 cursor = list(db.find({},{'_id':0}))
