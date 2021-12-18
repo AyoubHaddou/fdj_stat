@@ -1,5 +1,4 @@
 from json import encoder
-from plotly.tools import DIAG_CHOICES
 import streamlit as st 
 import pandas as pd
 from streamlit import cursor 
