@@ -56,7 +56,7 @@ def count_tenth_by_line(x,y):
     liste = {'Unité' : unit, 'Dizaine' : ten, 'Vingtaine' : twenty, 'Trentaine' : thirty, 'Quarantaine' : forty}
 
 
-    for i in x.iloc[line_start:line_end,4:5].values:
+    for i in x.iloc[line_start:line_end,:4].values:
             for j in i :
                 if j < 10 :
                     liste['Unité'] +=1 
