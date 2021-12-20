@@ -86,7 +86,6 @@ def mask_search_1(x,y):
     return x[mask]
 
 def mask_all(x,y):
-    mask = pd.Series(True, index=x.index)
     mask = pd.Series(False, index=x.index)
     mask |= x[0].isin([y]) 
     mask |= x[1].isin([y])
