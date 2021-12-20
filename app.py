@@ -15,7 +15,7 @@ client = MongoClient('mongodb+srv://ayoub:dnU*r*kNQXMj2pv@cluster0.pblvj.mongodb
 db = client.Database_scrapy.Loto2
 
 # Declaration des variables et des listes et des Df
-a = st.sidebar.selectbox('Hello',['Accueil','Recherches','Visualisations','FDJ-Generator','En vrac'])
+a = st.sidebar.selectbox('Hello',['Accueil','Recherches','Visualisations','FDJ-Generator'])
 col1,col2,col3 = st.columns(3)
 acol1,acol2 = st.columns(2)
 
@@ -74,10 +74,10 @@ main_df_2.index += 1
 
 
 if a == 'Accueil':
-    st.title('FDJ - Statistiques')
+    st.title('FDJ - Statistiques \n--------')
+    st.header('Quelques opérations mathématiques pour devenir Millionnaire ? ')
     st.text('Ici vous trouverez les résultats du Loto depuis janvier 2009. ')
     st.text("Des applications mathématiques permettent d'obtenir toute sorte d'informations et de \nvisualisations graphiques que je vous propose sur ce site.")
-    st.text('Quelques opérations mathématiques pour devenir Millionnaire ? ')
     st.text("Clic sur l'onglet Recherche ou visualisation pour en savoir plus. \n ")
     st.markdown('--------------\nCeci est un site à but éducatif et récréatif. Je déni toute responsabilité de perte aux jeux. Si toutefois vous gagnez, n\'hésitez pas à me remercier sur azerty@gmail.com')
 
@@ -139,12 +139,12 @@ if a == 'Recherches':
 if a == "FDJ-Generator":
     with acol1:
         st.write('Voici les 10 numéros les moins parut depuis 2009 :')
-        df_table_100['en %'] = df_table_100['en %'].sort_values()
-        st.dataframe(df_table_100[0:10])   
+        main_df_1['En %'] = main_df_1['En %'].sort_values()
+        st.dataframe(main_df_1[0:10])   
     with acol2:
         st.write('Voici les 5 premiers numéros chances les moins parrut depuis 2009:')
-        df_table_chance_100['en %'] = df_table_chance_100['en %'].sort_values()
-        st.dataframe(df_table_chance_100[0:5], height=350)
+        main_df_2['En %'] = main_df_2['En %'].sort_values()
+        st.dataframe(main_df_2[0:5], height=350)
         st.write('Voici les parrutions par tranche de dizaine depuis 2009 :')
         tenth = count_tenth(df2)
         st.write(pd.DataFrame(tenth, index=tenth.keys())[0:1])
@@ -156,18 +156,18 @@ if a == "FDJ-Generator":
         st.selectbox('Quelques tirages possibles',gen_loto(df2))
 
 
-if a == 'En vrac':
-    with col1:
-        st.write('Les 5 N° - Parution en %')
-        st.dataframe(df_table_100)
+# if a == 'En vrac':
+#     with col1:
+#         st.write('Les 5 N° - Parution en %')
+#         st.dataframe(df_table_100)
         
-    with col2:
-        st.write('Le N° chance - Parution en %')
-        st.dataframe(df_table_chance_100)
+#     with col2:
+#         st.write('Le N° chance - Parution en %')
+#         st.dataframe(df_table_chance_100)
         
-    with col3:
-        st.write('Nombre de parution de chaque dizaine depuis 2009')
-        st.write(count_tenth(df2))
+#     with col3:
+#         st.write('Nombre de parution de chaque dizaine depuis 2009')
+#         st.write(count_tenth(df2))
 
 if a == 'Visualisations':
 
