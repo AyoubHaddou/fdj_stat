@@ -18,6 +18,8 @@ db = client.Database_scrapy.Loto2
 a = st.sidebar.selectbox('Hello',['Accueil','Recherches','Visualisations','FDJ-Generator'])
 col1,col2,col3 = st.columns(3)
 acol1,acol2 = st.columns(2)
+numeros_chance = [i for i in range (1,11)]
+numeros_complet = [i for i in range(1,50)]
 
 cursor = list(db.find({},{'_id':0}))
 df = pd.DataFrame(cursor)
@@ -26,25 +28,25 @@ df2 = pd.DataFrame(n)
 df2.index += 1 
 
 table_chance_100 = []
-for i in range(1,11):
+for i in numeros_chance:
     table_chance_100.append({'N° chance' :  i, 'en %' : (count_number_chance(df,i) / 2094 * 100)})
 df_table_chance_100 = pd.DataFrame(table_chance_100)
-df_table_chance_100.index = [i for i in range (1,11)]
+df_table_chance_100.index = numeros_chance
 
 table_100 = []
-for i in range(1,50):
+for i in numeros_complet:
     table_100.append({'Numero' :  i, 'en %' : (count_number(df,i) *100 / (len(df)*5))})
 df_table_100 = pd.DataFrame(table_100)
 df_table_100.index +=1 
 
 table_c_100 = []
-for i in range(1,50):
+for i in numeros_complet:
     table_c_100.append({'Nombre de sortie' :  count_number(df,i), 'En %' : float(count_number(df,i)* 100 / (len(df)*5))})
 main_df_1 = pd.DataFrame(table_c_100)
 main_df_1.index +=1 
 
 table_c_100_chance = []
-for i in range(1,11):
+for i in numeros_chance:
     table_c_100_chance.append({'Nombre de sortie' :  count_number_chance(df,i), 'En %' : float(count_number_chance(df,i)* 100 / len(df))})
 main_df_2 = pd.DataFrame(table_c_100_chance)
 main_df_2.index += 1 
@@ -137,7 +139,7 @@ if a == 'Visualisations':
     fig1 = px.bar(main_df_1, x=main_df_1.index, y='Nombre de sortie')
     st.write(fig1)
     fig2 = go.Figure(
-    data=[go.Bar(y=main_df_1['En %'],x=[i for i in range(1,50)])],
+    data=[go.Bar(y=main_df_1['En %'],x=numeros_complet)],
     layout_title_text="'Histogramme des 5 numéros en pourcentage")
     st.write(fig2)
 
@@ -145,7 +147,7 @@ if a == 'Visualisations':
     fig3 = px.bar(main_df_2, x=main_df_2.index, y='Nombre de sortie')
     st.write(fig3)
     fig4 = go.Figure(
-    data=[go.Bar(y=main_df_2['En %'],x=[i for i in range(1,11)])],
+    data=[go.Bar(y=main_df_2['En %'],x=numeros_chance)],
     layout_title_text="Histogramme du numéro chance en pourcentage")
     st.write(fig4)
 
