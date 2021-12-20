@@ -49,28 +49,6 @@ for i in range(1,11):
 main_df_2 = pd.DataFrame(table_c_100_chance)
 main_df_2.index += 1 
 
-# num = []
-# for i in range(1,50):
-#     num.append({'Numero :'+str(i) : count_number(df,i)})
-# num_df = pd.DataFrame(num)
-# num_df.index += 1 
-
-# num_p = []
-# for i in range(1,50):
-#     num_p.append({i : count_number(df,i) * 100 / (len(df)*5)})
-# num_p_df = pd.DataFrame(num_p)
-# num_p_df.index = [i for i in range (1,50)]
-# num_chance = []
-# for i in range(1,11):
-#     num_chance.append({i : count_number_chance(df,i)})
-# df_num_chance = pd.DataFrame(num_chance)
-# df_num_chance.index += 1
-
-# num_chance_p = []
-# for i in range(1,11):
-#     num_chance_p.append({i : count_number_chance(df,i) / 2094 *100})
-# df_num_chance_p = pd.DataFrame(num_chance_p)
-# df_num_chance_p.index += 1 
 
 
 if a == 'Accueil':
@@ -121,21 +99,6 @@ if a == 'Recherches':
     st.text('On remarque des tendances de parution à 2 et 10% \nClic sur visualisation pour en voir plus à ce sujet.')
 
 
-# if a == 'Visualisations':
-#     st.header('Visualisations des tirages sur les 5 numéros')
-#     st.subheader('Nombre de parution :')
-#     st.bar_chart(num_df)
-#     st.subheader('Nombre de parution en pourcentage')
-#     st.bar_chart(num_p_df)
-#     st.header('Visualisations des tirages pour le numéro chance')
-#     st.subheader('Nombre de parution :')
-#     st.bar_chart(df_num_chance)
-#     st.subheader('Nombre de parution en pourcentage')
-#     st.bar_chart(df_num_chance_p)
-#     st.text('Les tendances à 2% pour les 5 numéros et à 10% pour le numéro chance \nsont bien visibles par ses graphiques')
-#     st.text('Pourrait-on prévoir que les numéro qui n\'ont pas encore atteint les 2% \nsont plus suceptible de sortir lors des prochains tirages ?')
-#     st.text('Clic sur l\'onglet FDJ-GENERATOR pour obtenir ton jeux aléatoire \nen tenant compte des ses informations')
-
 if a == "FDJ-Generator":
     with acol1:
         st.write('Voici les 10 numéros les moins parut depuis 2009 :')
@@ -156,18 +119,6 @@ if a == "FDJ-Generator":
         st.selectbox('Quelques tirages possibles',gen_loto(df2))
 
 
-# if a == 'En vrac':
-#     with col1:
-#         st.write('Les 5 N° - Parution en %')
-#         st.dataframe(df_table_100)
-        
-#     with col2:
-#         st.write('Le N° chance - Parution en %')
-#         st.dataframe(df_table_chance_100)
-        
-#     with col3:
-#         st.write('Nombre de parution de chaque dizaine depuis 2009')
-#         st.write(count_tenth(df2))
 
 if a == 'Visualisations':
 
@@ -207,3 +158,55 @@ if a == 'Visualisations':
     st.text('Clic sur l\'onglet FDJ-GENERATOR pour obtenir ton jeux aléatoire \nen tenant compte des ses informations')
 
 
+# Pour plus tard ? 
+
+# num = []
+# for i in range(1,50):
+#     num.append({'Numero :'+str(i) : count_number(df,i)})
+# num_df = pd.DataFrame(num)
+# num_df.index += 1 
+
+# num_p = []
+# for i in range(1,50):
+#     num_p.append({i : count_number(df,i) * 100 / (len(df)*5)})
+# num_p_df = pd.DataFrame(num_p)
+# num_p_df.index = [i for i in range (1,50)]
+# num_chance = []
+# for i in range(1,11):
+#     num_chance.append({i : count_number_chance(df,i)})
+# df_num_chance = pd.DataFrame(num_chance)
+# df_num_chance.index += 1
+
+# num_chance_p = []
+# for i in range(1,11):
+#     num_chance_p.append({i : count_number_chance(df,i) / 2094 *100})
+# df_num_chance_p = pd.DataFrame(num_chance_p)
+# df_num_chance_p.index += 1 
+
+# if a == 'Visualisations':
+#     st.header('Visualisations des tirages sur les 5 numéros')
+#     st.subheader('Nombre de parution :')
+#     st.bar_chart(num_df)
+#     st.subheader('Nombre de parution en pourcentage')
+#     st.bar_chart(num_p_df)
+#     st.header('Visualisations des tirages pour le numéro chance')
+#     st.subheader('Nombre de parution :')
+#     st.bar_chart(df_num_chance)
+#     st.subheader('Nombre de parution en pourcentage')
+#     st.bar_chart(df_num_chance_p)
+#     st.text('Les tendances à 2% pour les 5 numéros et à 10% pour le numéro chance \nsont bien visibles par ses graphiques')
+#     st.text('Pourrait-on prévoir que les numéro qui n\'ont pas encore atteint les 2% \nsont plus suceptible de sortir lors des prochains tirages ?')
+#     st.text('Clic sur l\'onglet FDJ-GENERATOR pour obtenir ton jeux aléatoire \nen tenant compte des ses informations')
+
+# if a == 'En vrac':
+#     with col1:
+#         st.write('Les 5 N° - Parution en %')
+#         st.dataframe(df_table_100)
+        
+#     with col2:
+#         st.write('Le N° chance - Parution en %')
+#         st.dataframe(df_table_chance_100)
+        
+#     with col3:
+#         st.write('Nombre de parution de chaque dizaine depuis 2009')
+#         st.write(count_tenth(df2))
