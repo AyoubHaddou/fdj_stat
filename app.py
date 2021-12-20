@@ -10,8 +10,8 @@ import plotly.express as px
 
 
 # => Import de ma database sur mongodb cloud 
-# client = MongoClient('mongodb+srv://ayoub:dnU*r*kNQXMj2pv@cluster0.pblvj.mongodb.net/myFirstDatabase?retryWrites=true&w=majority')
-client = MongoClient(**st.secrets["mongo"])
+client = MongoClient('mongodb+srv://ayoub:dnU*r*kNQXMj2pv@cluster0.pblvj.mongodb.net/myFirstDatabase?retryWrites=true&w=majority')
+# client = MongoClient(**st.secrets["mongo"])
 db = client.Database_scrapy.Loto2
 
 # Declaration des variables et des listes et des Df
